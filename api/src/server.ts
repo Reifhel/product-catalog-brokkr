@@ -1,6 +1,6 @@
 import express from "express";
-import { db } from "./db/connection.ts";
-import { schema } from "./db/schema/index.ts";
+import getProductDetails from "./http/routes/get-product-details.ts";
+import getProducts from "./http/routes/get-products.ts";
 
 const app = express();
 
@@ -14,8 +14,5 @@ app.get("/health", (_, res) => {
   res.send("OK!");
 });
 
-app.get("/products", async (_, res) => {
-  const queryResult = await db.select().from(schema.productsTable);
-
-  res.send(queryResult);
-});
+app.use(getProducts);
+app.use(getProductDetails);
