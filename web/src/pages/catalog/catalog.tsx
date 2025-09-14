@@ -9,11 +9,13 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useQuery } from "@tanstack/react-query";
-import { SearchIcon } from "lucide-react";
+import { SearchIcon, XIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 import { NavLink, useSearchParams } from "react-router";
 
 export function Catalog() {
-  const [searchParams, _] = useSearchParams();
+  const [searchText, setSearchText] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const page = searchParams.get("page");
   const limit = searchParams.get("limit");
@@ -21,18 +23,56 @@ export function Catalog() {
   const search = searchParams.get("search");
 
   const { data: result } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", page, limit, sort, search],
     queryFn: () => getProducts({ page, limit, sort, search }),
   });
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(searchText);
+
+    setSearchParams((state) => {
+      if (searchText) {
+        state.set("search", searchText);
+      }
+
+      return state;
+    });
+
+    setSearchText("");
+  }
+
+  function handleClearFilter() {
+    setSearchParams((state) => {
+      state.delete("search");
+
+      return state;
+    });
+  }
+
   return (
     <div className="flex flex-col items-center gap-8">
-      <div className="flex w-3xl gap-2 items-center">
-        <Input placeholder="Pesquise por um produto" />
-        <Button>
+      <form
+        className="flex w-3xl gap-2 items-center"
+        onSubmit={(event) => handleSubmit(event)}
+      >
+        <Input
+          placeholder="Pesquise por um produto"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <Button type="submit">
           <SearchIcon className="font-bold" />
         </Button>
-      </div>
+        <Button
+          type="button"
+          variant={"outline"}
+          onClick={handleClearFilter}
+          disabled={!search}
+        >
+          <XIcon className="font-bold" /> Limpar Filtros
+        </Button>
+      </form>
 
       <div className="flex flex-col gap-2">
         <h1>Produtos</h1>
