@@ -1,0 +1,39 @@
+{
+  "name": "product-catalog-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --env-file .env --experimental-strip-types --no-warnings --watch src/server.ts",
+    "build": "tsc --build",
+    "start": "node ./dist/index.js",
+    "db:seed": "node --env-file .env --experimental-strip-types --no-warnings src/db/seed.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reifhel/product-catalog-brokkr.git"
+  },
+  "author": "Reifhel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Reifhel/product-catalog-brokkr/issues"
+  },
+  "homepage": "https://github.com/Reifhel/product-catalog-brokkr#readme",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "drizzle-orm": "^0.44.5",
+    "drizzle-seed": "^0.3.1",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "drizzle-kit": "^0.31.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}

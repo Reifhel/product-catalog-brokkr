@@ -1,0 +1,10 @@
+services:
+  product-catalog-db:
+    image: mysql:8.2
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: ProductCatalogDB
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+    ports:
+      - "3306:3306"
