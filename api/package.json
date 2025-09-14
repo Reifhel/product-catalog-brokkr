@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Reifhel/product-catalog-brokkr#readme",
   "description": "",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "drizzle-orm": "^0.44.5",
     "drizzle-seed": "^0.3.1",
@@ -31,6 +32,7 @@
     "mysql2": "^3.14.5"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "drizzle-kit": "^0.31.4",
     "ts-node": "^10.9.2",

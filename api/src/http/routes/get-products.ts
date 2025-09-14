@@ -7,7 +7,6 @@ const router = Router();
 
 router.get("/products", async (req, res) => {
   const { search, page = 0, limit = 10, sort = "nome, asc" } = req.query;
-  console.log(req.query);
   const [sortParam, sortDirection] = String(sort).split(",");
 
   const sortColumn =
