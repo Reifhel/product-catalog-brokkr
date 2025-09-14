@@ -10,7 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useQuery } from "@tanstack/react-query";
 import { SearchIcon, XIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState, type FormEvent } from "react";
 import { NavLink, useSearchParams } from "react-router";
 
 export function Catalog() {
@@ -27,7 +27,7 @@ export function Catalog() {
     queryFn: () => getProducts({ page, limit, sort, search }),
   });
 
-  function handleSubmit(event) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log(searchText);
 
@@ -70,7 +70,7 @@ export function Catalog() {
           onClick={handleClearFilter}
           disabled={!search}
         >
-          <XIcon className="font-bold" /> Limpar Filtros
+          <XIcon className="font-bold" /> Limpar Filtro
         </Button>
       </form>
 
